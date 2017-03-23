@@ -1,6 +1,8 @@
 [submodule "Task1/UnitingTwist"]
 	path = Task1/UnitingTwist
 	url = https://github.com/Litun/UnitingTwist.git
+    ignore = dirty
 [submodule "Task2/storage-blob-android-photo-uploader"]
 	path = Task2/storage-blob-android-photo-uploader
 	url = https://github.com/Azure-Samples/storage-blob-android-photo-uploader.git
+    ignore = dirty
