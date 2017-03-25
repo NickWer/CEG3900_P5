@@ -40,6 +40,7 @@ Experience: The user docs were not bad. The game is kind of fun but the difficul
 		\caption{Task 1 - Part 2 of 2 - Demonstrating how a chain can remove more than just 3 blocks}
 	\end{figure}
 
+\clearpage
 \section{Task 2}
 Deliverables: See screenshots 5-8. My MS Azure account is linked to my wright state email address, werle.3@wright.edu
 
@@ -69,6 +70,7 @@ Experience Report: Building the APK was very easy. Honestly registering to MS Az
 	\end{figure}
 
 
+\clearpage
 \section{Task 3}
 Deliverables: See screenshots 9-12. Google cloud platform account is linked to my private throwaway gmail address.
 
@@ -103,6 +105,7 @@ Anyways, it works now, which is what matters I suppose.
 		\caption{Task 3 - The image upload portion. Almost works, but there's an exception when I hit submit that lacks an obvious solution, given that the tutorial seems to think it should just work out of the box.}
 	\end{figure}
 	
+\clearpage
 \section{Task 4}
 Deliverables: See screenshots 13-16
 
@@ -131,4 +134,49 @@ Experience Report: I didn't think this one was too bad, although at one point I 
 		\caption{Task 4 - Showing that the other functionality is the same}
 	\end{figure}
 
+\clearpage
+\section{Task 5}
+Deliverables: See Screenshots 17-20
+
+Status Report: My application works. 
+It's not especially fast, nor does it use many/very large word lists.
+But if you use it you're pretty much guarnteed to have an extremely strong password because it's definition of a weak password is very strict. The application has only one activity for simplicity's sake.
+
+Experience Report: This was probably my favorite application of the set.
+I think it will be interesting to see how this plays out with rainbow tables and the cloud and such. As it is it's painfully slow right now.
+Part of me wishes I had implemented progress reporting of some sort but I don't think it's worth it because the UI is "good enough" in my opinion, and I'm late enough as it is...
+
+Definition of a similar password: My application defines a similar password as one which, after lowercasing the user password and the password in the dump, contains the dumped password, or which is a subset of the dump password. That is, I define it as follows, in code:
+
+\begin{verbatim}
+    if(dumpedPassword.toLowerCase().contains(userPassword))
+        matches = true;
+
+    if(userPassword.contains(dumpedPassword))
+        matches = true;
+\end{verbatim}
+
+How helpful is this APK is: I believe this APK is the pretense of a future one, though I'm not really sure. It's pretty tightly bound to the UI unlike other solutions I have made in the past.
+That said, I once looked at the docs about for the spark api, and it seems like streams are extremely easily ported from running locally to running on a cluster, so in that regard I think I will be well prepared for something like that.
+
+    \begin{figure}[ht]
+		\includegraphics[width=\maxwidth{3in}]{img/t5s1.png}
+		\centering
+		\caption{Task 5 - The initial screen}
+	\end{figure}
+	\begin{figure}[ht]
+		\includegraphics[width=\maxwidth{3in}]{img/t5s2.png}
+		\centering
+        \caption{Task 5 - Displayed to the user as it checks. Ideally I would put a progress report of some sort here, too.}
+	\end{figure}
+	\begin{figure}[ht]
+		\includegraphics[width=\maxwidth{3in}]{img/t5s3.png}
+		\centering
+        \caption{Task 5 - Message displayed for passwords that are similar to ones in the wordlist}
+	\end{figure}
+	\begin{figure}[ht]
+		\includegraphics[width=\maxwidth{3in}]{img/t5s4.png}
+		\centering
+		\caption{Task 5 - Message displayed for passwords which are very strong}
+    \end{figure}
 \end{document}
