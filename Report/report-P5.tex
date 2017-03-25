@@ -3,6 +3,9 @@
 \author{Nick Werle}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\makeatletter
+\def\maxwidth#1{\ifdim\Gin@nat@width>#1 #1\else\Gin@nat@width\fi}
+\makeatother
 
 \begin{document}
 \maketitle
@@ -80,22 +83,22 @@ Anyways, it works now, which is what matters I suppose.
 
 
 	\begin{figure}[ht]
-		\includegraphics[width=5in]{img/t3s1.png}
+		\includegraphics[width=\maxwidth{5in}]{img/t3s1.png}
 		\centering
 		\caption{Task 3 - The initial screen}
 	\end{figure}
 	\begin{figure}[ht]
-		\includegraphics[width=5in]{img/t3s2.png}
+		\includegraphics[width=\maxwidth{5in}]{img/t3s2.png}
 		\centering
         \caption{Task 3 - Creating a book}
 	\end{figure}
 	\begin{figure}[ht]
-		\includegraphics[width=5in]{img/t3s3.png}
+		\includegraphics[width=\maxwidth{5in}]{img/t3s3.png}
 		\centering
         \caption{Task 3 - The book I created}
 	\end{figure}
 	\begin{figure}[ht]
-		\includegraphics[width=5in]{img/t3s4.png}
+		\includegraphics[width=\maxwidth{5in}]{img/t3s4.png}
 		\centering
 		\caption{Task 3 - The image upload portion. Almost works, but there's an exception when I hit submit that lacks an obvious solution, given that the tutorial seems to think it should just work out of the box.}
 	\end{figure}
