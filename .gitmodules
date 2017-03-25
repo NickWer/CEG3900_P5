@@ -10,3 +10,6 @@
 	path = Task3/getting-started-java
 	url = https://github.com/GoogleCloudPlatform/getting-started-java.git
     ignore = dirty
+[submodule "SecLists"]
+	path = SecLists
+	url = https://github.com/danielmiessler/SecLists.git
