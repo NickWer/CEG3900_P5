@@ -6,3 +6,6 @@
 	path = Task2/storage-blob-android-photo-uploader
 	url = https://github.com/Azure-Samples/storage-blob-android-photo-uploader.git
     ignore = dirty
+[submodule "Task3/getting-started-java"]
+	path = Task3/getting-started-java
+	url = https://github.com/GoogleCloudPlatform/getting-started-java.git
