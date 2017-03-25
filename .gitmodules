@@ -9,3 +9,4 @@
 [submodule "Task3/getting-started-java"]
 	path = Task3/getting-started-java
 	url = https://github.com/GoogleCloudPlatform/getting-started-java.git
+    ignore = dirty

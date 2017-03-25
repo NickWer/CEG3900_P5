@@ -64,4 +64,41 @@ Experience Report: Building the APK was very easy. Honestly registering to MS Az
 		\centering
 		\caption{Task 2 - The uploaded image}
 	\end{figure}
+
+
+\section{Task 3}
+Deliverables: See screenshots 9-12. Google cloud platform account is linked to my private throwaway gmail address.
+
+Status Report: It mostly works. I tried running one of the later parts of the tutorial that allows users to upload images and it didn't like it, but I honestly spent literally 2-3 hours on this task because of some misleading information regarding setting up the authentication credentials needed for the google cloud SDK. So basically, I'm just trilled that it works at all - and in fact, it works perfectly fine for everything that I tested \textit{except} image uploads.
+
+Experience report: As I just mentioned, this one was particularly challenging for me.
+Took a decent bit to get the environment set up correctly, and then I was recieving a mysterious 401 error that would cause my application to crash before it had even started.
+I had honestly written up a several page, with screenshot explanation of the situation that I was going to submit instead, when I found the solution.
+The issue was that you need to set up credentials for the application, but when you go to do so, it says you don't need any credentials and that the default will work just fine.
+What was not clear was that you had to do something to enable those default credentails (which doesn't seem very default to me...).
+Anyways, it works now, which is what matters I suppose.
+
+
+	\begin{figure}[ht]
+		\includegraphics[width=5in]{img/t3s1.png}
+		\centering
+		\caption{Task 3 - The initial screen}
+	\end{figure}
+	\begin{figure}[ht]
+		\includegraphics[width=5in]{img/t3s2.png}
+		\centering
+        \caption{Task 3 - Creating a book}
+	\end{figure}
+	\begin{figure}[ht]
+		\includegraphics[width=5in]{img/t3s3.png}
+		\centering
+        \caption{Task 3 - The book I created}
+	\end{figure}
+	\begin{figure}[ht]
+		\includegraphics[width=5in]{img/t3s4.png}
+		\centering
+		\caption{Task 3 - The image upload portion. Almost works, but there's an exception when I hit submit that lacks an obvious solution, given that the tutorial seems to think it should just work out of the box.}
+	\end{figure}
+
+
 \end{document}
