@@ -381,6 +381,11 @@
 
     <string name="widget_random">Random Comic</string>
     <string name="widget_latest">Latest Comic</string>
+    <string name="no_tags_at_this_time_add_one">No tags at this time. Add one!</string>
+    <string name="remove">Remove</string>
+    <string name="insert_new_tag">Insert new tag</string>
+    <string name="add">Add</string>
+    <string name="add_remove_a_tag">Add/Remove A Tag</string>
 
     <string-array name="forum_thread" translatable="false">
         <item>Reddit</item>

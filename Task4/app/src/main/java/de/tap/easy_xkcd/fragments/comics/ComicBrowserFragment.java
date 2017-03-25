@@ -42,6 +42,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,15 +56,23 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.kogitune.activity_transition.ActivityTransition;
 import com.tap.xkcd_reader.R;
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import de.tap.easy_xkcd.Activities.MainActivity;
 import de.tap.easy_xkcd.database.DatabaseManager;
@@ -204,6 +214,61 @@ public class ComicBrowserFragment extends ComicFragment {
             final PhotoView pvComic = (PhotoView) itemView.findViewById(R.id.ivComic);
             final TextView tvAlt = (TextView) itemView.findViewById(R.id.tvAlt);
             final TextView tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
+            final TextView tvTags = (TextView) itemView.findViewById(R.id.tvTags);
+
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            final DatabaseReference myRef = database.getReference(Integer.toString(position));
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    String value = dataSnapshot.getValue(String.class);
+                    tvTags.setText(value);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // RIP
+                }
+            });
+
+            final Button btnSubmitTag = (Button) itemView.findViewById(R.id.btnAddTag);
+            final Button btnRemoveTag = (Button) itemView.findViewById(R.id.btnRemoveTag);
+            final EditText tagField = (EditText) itemView.findViewById(R.id.etNewTag);
+
+            btnSubmitTag.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    myRef.setValue(tvTags.getText() + "|" + tagField.getText());
+                    tagField.setText("");
+                }
+            });
+
+            btnRemoveTag.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String target = tagField.getText().toString();
+                    String[] items = tvTags.getText().toString().split("\\|");
+                    List<String> processed = new ArrayList<String>(items.length);
+
+                    for (String item : items) {
+                        if (!item.equals(target))
+                            processed.add(item);
+                    }
+                    target = "";
+                    for (String item : processed) {
+                        target += item + "|";
+                    }
+
+                    tvTags.setText(target);
+                    tagField.setText("");
+                    myRef.setValue(target);
+                }
+            });
+
+
+
 
             if (Arrays.binarySearch(mContext.getResources().getIntArray(R.array.large_comics), position+1) >= 0)
                 pvComic.setMaximumScale(15.0f);

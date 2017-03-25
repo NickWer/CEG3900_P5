@@ -49,6 +49,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.kogitune.activity_transition.ExitActivityTransition;
 import com.tap.xkcd_reader.R;
 
@@ -139,6 +141,9 @@ public abstract class ComicFragment extends android.support.v4.app.Fragment {
             itemView.setTag(position);
             final PhotoView pvComic = (PhotoView) itemView.findViewById(R.id.ivComic);
             final TextView tvAlt = (TextView) itemView.findViewById(R.id.tvAlt);
+
+//            FirebaseDatabase database = FirebaseDatabase.getInstance();
+//            DatabaseReference myRef = database.getReference("message");
 
             if (!prefHelper.defaultZoom()) {
                 pvComic.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
