@@ -1,0 +1,58 @@
+\documentclass{article}
+\title{Uniting Twist Developer Documentation}
+\author{Nick Werle}
+
+\begin{document}
+\maketitle
+\section{Activities}
+Uniting twist contains two activities: \texttt{MainActivity} and \texttt{StartActivity}. Each has an associated layout of the same name.
+
+\subsection{StartActivity}
+The start activity is the "main menu" of sorts - where the player "begins" the game. Displays the high score and starts the MainActivity
+
+\subsection{MainActivity}
+The main activity is the main portion of the app - the activity where the game is played. Provides logic for setting up renderer, losing.
+
+\section{Classes}
+\subsection{MyGlRenderer}
+Implementation for \texttt{GLSurfaceView.Renderer}. Provides methods to set up the shader, debug methods for open GL errors, etc.
+
+\subsection{Point}
+Basic XYZ point implementation.
+
+\subsection{Scene}
+Holds the scene to be drawn, as well as update and pause/resume methods to handle ticks. 
+
+\subsection{Hexagon}
+Object that handles the rendering an individual hexagon. Not for game logic.
+
+\subsection{GyroscopeListener}
+Listens to the Gyroscope for \texttt{onSensorChanged} events, updating the angle and time of each event.
+
+\subsection{GraphGameHexagon}
+Handles the graph that controls which hexagons are connected to which. 
+
+\subsection{GameHexagonContainer}
+Holds a GameHexagon and the point it exists at. Provides a method to draw the hexagon.
+
+\subsection{GameHexagon}
+Object containing each hexagon as an object of the game (as opposed to one for rendering). Provides logic for moving, rotating, and drawing itself on screen.
+
+\subsection{GameField}
+Handles the hexagons that fly about the screen and the graph of connected hexagons too. Spawns hexagons on a timer, detects collisions of hexagons, and updates hexagons each tick.
+
+\subsection{FlyingGameHexagon}
+A GameHexagonContainer for hexagons that are still in flight. Updates it's position based on the angle and  time since last update.
+
+\subsection{FieldGraph}
+Closely related to the \texttt{GameGraphHexagon}. Handles the game graph in relation to the hexagons on the field. Handles logic for removing clusers, rotating the field, and drawing.
+
+\subsection{Engine}
+Handles tick logic, updating the scene and then rendering each tick. Accomplishes this by recording the time of the last tick and then attempting to rerender when a minimum amount of time has elapsed.
+
+\subsection{ColorUtils}
+Color related utilities.
+
+\subsection{Circle}
+Draws the circle which defines the radius the player's placed tiles may not exceed.
+\end{document}
