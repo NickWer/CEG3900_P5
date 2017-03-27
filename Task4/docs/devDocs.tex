@@ -1,0 +1,99 @@
+\documentclass{article}
+
+\title{Collaborative XKCD Tagging Developer Documentation}
+\author{Nick Werle}
+
+\begin{document}
+\maketitle
+\section{My Modifications}
+To make the standard application collaborative, I added an input field, two buttons (add, remove), and a TextView component to the comic layout.
+Then, when a comic view fragment is being instantiated, I merely bind to the firebase DB, requesting the item with a key = to the number of the comic.
+When users add or remove a tag, I update text field and push the change to firebase.
+
+\section{Activities}
+\begin{enumerate}
+\item AboutActivity - Displays a simple About Screen
+\item BaseActivity - Sets up toolbar, colors, navigation drawer, etc.
+\item CustomFilePickerActivity - Self describing. For picking where to store offline data I believe
+\item DonateActivity - For donations
+\item MainActivity - Sets up comic pager, loads files from offline, favorites db, etc.
+\item NestedSettingsActivity - Handles the logic of setting/recalling various settings.
+\item SearchResultsActivity - Displays results from searching for a comic
+\item SettingsActivity - Handles preference based settings 
+\item WhatIfActivity - Loads, Stores, and Displays the "What If" blog articles
+\end{enumerate}
+
+\section{CustomTabHelpers}
+\begin{enumerate}
+\item BrowserFallback - When the app encounters an error displaying a page or comic, it can fallback by opening a web browser to the associated page
+\item CustomTabActivityHelper - Provides a way to open a page in a custom chome tab, which provides the speed of chrome (As opposed to the standard browser) with the customization of a webview control
+\item CustTabsHelper - Provides utility methods for the previous class.
+\end{enumerate}
+
+\section{database}
+\begin{enumerate}
+\item DatabaseManager - Responsible for storing/recalling/updating user data regarding certain comics - eg, read or not, favorited, etc.
+\item RealmComic - RealmObject providing persistence for comics (number, isRead, title, url, etc.)
+\end{enumerate}
+
+\section{Fragments}
+\begin{enumerate}
+\item NestedPreferenceFragment - Provides tasks for deleting comics and articles, and a task for repairing the comics database (In the context of persistence)
+\end{enumerate}
+\subsection{Comics}
+\begin{enumerate}
+\item ComicBrowserFragment - Fragment for displaying a comic in the browser
+\item ComicFragment - Abstract fragment generalizing the functionality of how comics are displayed, as well as methods for navigating to particular comics, getting the most recent comic, interacting with the pager, etc.
+\item FavoritesFragment - Provides functionality for downloading favorites, deleting images, and updating favorites.
+\item OfflineFragment - Overrides standard ComicFragment functionality to display/save images from/to the filesystem cache
+\end{enumerate}
+\subsection{Overview}
+\begin{enumerate}
+\item OverviewBaseFragment - Generalizes functionality related to, but not specifically of, displaying comics (e.g. bookmarking comics, displaying random comics, etc.)
+\item OverviewCardsFragment - General layout for cards?
+\item OverviewListFragment - General layout/functionality behind items in the list of comics
+\item OverviewRecyclerBaseFragment - Provides bookmarking, and adapters for recyclerview consumers
+\item OverviewStaggeredGridFragment - Provides a differend grid layout manager to the standard overview grid
+\end{enumerate}
+\subsection{WhatIf}
+\begin{enumerate}
+\item WhatIfFavoritesFragment - Variation of the WhatIfFragment for favorited WhatIf articles
+\item WhatIfFragment - Displays WhatIf articles
+\item WhatIfOverviewFragment - For listed whatif items
+\end{enumerate}
+
+\section{misc}
+\begin{enumerate}
+\item GlideConfiguration - GlideModule implementation that sets the decoder format.
+\item HackyDrawerLayout - Provides a hacky fix for an issue with the standard DrawerLayout
+\item HackyViewPage r- Fixes an issue relating to ScaleGestureDecetor messing up touch events. 
+\item OnSwipeTouchListener - Listens for flinging swipe events
+\item ScrollAwareFABBehavior - Behavior modifying a FAB so that it scrolls with the child?
+\end{enumerate}
+
+\section{Notifications}
+\begin{enumerate}
+\item ComicListener - Schedules alarms to download the latest comics
+\item ComicNotifier - Notifies the user of new comic/whatif article availability
+\item ConnectivityReceiver - Recieves information about network connectivity and wakes attempts to download comics if needed \& connectivity is available
+\end{enumerate}
+\section{Services}
+\begin{enumerate}
+\item ArticleDownloadService - Downloads and stores articles in the background, as a service
+\item ComicDownloadService - Downloads and stores comics in the background, as a service
+\end{enumerate}
+\section{utils}
+\begin{enumerate}
+\item Article - Provides utility methods for parsing whatif artices into serializable Article objects
+\item Comic - Provides utility methods for parsing whatif artices into serializable Comic objects
+\item JsonParser - Returns a json object from a URL
+\item OfflineComic - Loads comics from offline as bitmap objects
+\item PrefHelper - Hides lots of duplicate code related to preferences
+\item ThemePref - Same as above but specifically for themes
+\end{enumerate}
+\section{Widget}
+\begin{enumerate}
+\item WidgetLatestProvider - Provides data to a widget that displays the latest comic
+\item WidgetRandomProvider - Provides data to a widget that displays a random comic
+\end{enumerate}
+\end{document}

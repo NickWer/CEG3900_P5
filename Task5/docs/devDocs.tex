@@ -1,0 +1,16 @@
+\documentclass{article}
+
+\title{Task 5 Developer Documentation}
+\author{Nick Werle}
+
+\begin{document}
+\maketitle
+This application is extremely simple, consisting of a single activity. The event bindings for the calculate button are placed in the OnCreate() method of the main activity.
+Internally it uses a method-private AsynTask object responsible for parsing the lines of the rockyou.txt file and testing their similarity to the user's input.
+
+My similarity test is simple but aggressive: If the user password contains a given wordlist password, or if a given wordlist password contains the user password, it is considered weak.
+I opted for this because an extremely common method to make password stronger is to append/prepend digits or special characters.
+While it does increase the complexity of the password from a statistical perspective, it is such a common and widely known practice that any dedicated cracker would likely be able to trivially beat it given enough time.
+
+I made the design decision not to report merely "weak" or "strong" or the levels in between - I let the user know the exact number of similar passwords found. This allows them to make their own choice about whether or not they believe the password is strong, because in my limited testing experience against this algorithm, getting a match count less than 10 is  difficult if you have words or common number sequences in your password.
+\end{document}
